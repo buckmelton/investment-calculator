@@ -20,7 +20,21 @@ type InvestmentResult = {
 
 type CalculationResult = InvestmentResult | string;
 
-function calculateInvestment(data: InvestmentData): CalculationResult {} // => result[]
+function calculateInvestment(data: InvestmentData): CalculationResult {
+  const { initialAmount, annualContribution, expectedReturn, duration } = data;
+
+  if (initialAmount < 0) {
+    return('Initial investment amount must be at least zero.');
+  }
+
+  if (expectedReturn < 0) {
+    return('Expected return must be at least zero.');
+  }
+
+  if (duration < 0) {
+    return('No valid amount of years provided.');
+  }
+}
 
 function printResults(results: CalculationResult) {
   // print (output) the results
