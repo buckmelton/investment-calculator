@@ -9,11 +9,20 @@ type InvestmentData = {
   annualContribution: number;
   expectedReturn: number;
   duration: number;
-}
+};
 
-function calculateInvestment(data: InvestmentData) {} // => result[]
+type InvestmentResult = {
+  year: string;
+  totalAmount: number;
+  totalContributions: number;
+  totalInterestEarned: number;
+};
 
-function printResults(results) {
+type CalculationResult = InvestmentResult | string;
+
+function calculateInvestment(data: InvestmentData): CalculationResult {} // => result[]
+
+function printResults(results: CalculationResult) {
   // print (output) the results
 }
 
