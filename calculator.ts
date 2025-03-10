@@ -18,7 +18,7 @@ type InvestmentResult = {
   totalInterestEarned: number;
 };
 
-type CalculationResult = InvestmentResult | string;
+type CalculationResult = InvestmentResult[] | string;
 
 function calculateInvestment(data: InvestmentData): CalculationResult {
   const { initialAmount, annualContribution, expectedReturn, duration } = data;
@@ -34,6 +34,29 @@ function calculateInvestment(data: InvestmentData): CalculationResult {
   if (duration < 0) {
     return('No valid amount of years provided.');
   }
+
+  let total = initialAmount;
+  let totalContributions = 0;
+  let totalInterestEarned = 0;
+
+  const annualResults: InvestmentResult[] = [];
+
+  for (let i = 0; i < duration; i++) {
+    total = total * (1 + expectedReturn);
+    totalInterestEarned = total - initialAmount - totalContributions;
+    totalContributions = totalContributions + annualContribution;
+    total = total + annualContribution;
+
+    annualResults.push({
+      year: `Year ${i + 1}`,
+      totalAmount: total,
+      totalContributions,
+      totalInterestEarned
+    });
+  }
+
+  return annualResults;
+
 }
 
 function printResults(results: CalculationResult) {
