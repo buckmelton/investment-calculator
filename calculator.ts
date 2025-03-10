@@ -67,9 +67,9 @@ function printResults(results: CalculationResult) {
 
   for (const yearEndResult of results) {
     console.log(yearEndResult.year);
-    console.log(`Total: ${yearEndResult.totalAmount}`);
-    console.log(`Total Contributions: ${yearEndResult.totalContributions}`);
-    console.log(`Total Interest Earned: ${yearEndResult.totalInterestEarned}`);
+    console.log(`Total: ${yearEndResult.totalAmount.toFixed(0)}`);
+    console.log(`Total Contributions: ${yearEndResult.totalContributions.toFixed(0)}`);
+    console.log(`Total Interest Earned: ${yearEndResult.totalInterestEarned.toFixed(0)}`);
     console.log(`----------------------------`);
   }
 }
